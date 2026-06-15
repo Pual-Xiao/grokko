@@ -1,71 +1,140 @@
 # Grokko
 
-> Turn dense, hard-to-read material into a **source-grounded, interactive HTML "understanding map."**
 > 把难啃的干货，拆成一张有原文依据、能追问、能复述的交互式理解地图。
 
-Grokko is an agent skill that takes a hard article / interview / paper / long technical write-up and produces a single self-contained `.html` page that helps a beginner actually *understand* it — not just skim a summary. Every key claim is tied back to the source text, ambiguous spots become Socratic questions, and the page ships with working closed-form quizzes, a progress bar, a wrong-answer review, and a copyable study report.
+Grokko 是一个 agent skill。它会把技术长文、访谈、论文、商业分析或跨学科材料，生成一份自包含的 `.html` 理解地图，帮助读者真正读懂内容，而不是只看摘要。
 
-**Output language defaults to Chinese**, regardless of the source language. Source quotes can remain in the original language with Chinese explanation. If the user explicitly asks for English or another language, use that language instead.
+它会把核心判断绑定到原文依据，区分事实、判断、推论和例子，并附带可点击的闭环题、进度条、错题回流和可复制的学习报告。
 
----
-
-## What makes it different
-
-- **Fidelity first.** Priority order is *fidelity > clear structure > friendliness > gamification*. Every core claim carries its `原文依据 / source quote`; the model's own inferences are labeled separately so you never mistake a paraphrase for the author's words.
-- **Fact / judgment / inference / example tagging.** Trains the reader to tell what the author *stated* from what was *inferred*.
-- **No forced causal chains.** It detects the source's actual structure (argument map, theme clusters, timeline, mechanism flow…) instead of flattening everything into one storyline.
-- **Cross-language term handling.** A built-in rule decides when a technical term should be translated, kept in the original, or kept-with-a-gloss — so you never get nonsense literal translations.
-- **Cross-model stable interactions.** Quizzes use one fixed, paste-verbatim, event-delegation engine. The model only fills `data-*` attributes; the logic is identical across Opus, Codex, etc., which removes the common "click does nothing" bug.
-- **Locked layout.** Left fixed sidebar (title + progress + nav) and a strictly single-column main area — no surprise multi-column grids.
+**默认输出中文**。无论原文是中文、英文还是其他语言，Grokko 默认都会生成中文理解地图；原文依据可以保留原文原句，并在必要时附中文解释。只有用户明确要求英文或其他语言时，才会改用对应语言。
 
 ---
 
-## The 11 modules every page contains
+## 它解决什么问题
 
-1. Goals & reading path
-2. Zero-background pack (3–5 must-know concepts)
-3. What the source is really asking
-4. Source structure map
-5. Core claims + evidence
-6. Key concepts
-7. Socratic reading levels
-8. Quest-style tasks (annotate / match / correct / transfer)
-9. Misconceptions & boundaries
-10. Background gaps
-11. Recap & study report
+很多深度材料难读，不是因为每句话都看不懂，而是因为读者容易丢失这几件事：
 
----
+- 作者真正想回答的问题是什么
+- 哪些是原文事实，哪些是作者判断
+- 哪些解释是辅助推论，不是作者原话
+- 概念之间到底是什么关系
+- 哪些地方容易被过度简化或误读
+- 读完以后下一步该追问什么
 
-## Install / Use
+Grokko 的目标不是把难内容“讲简单”，而是把难内容拆成一张有原文依据、结构清楚、可以互动检查的学习地图。
 
-Grokko is a skill for agent environments that have file tools (e.g. Claude Code / Cowork-style setups).
+优先级是：
 
-1. Copy the `grokko/` folder (containing `SKILL.md`) into your skills directory.
-2. Invoke it by giving the agent a piece of source text (paste, file path, or URL) and asking it to "build an understanding map" / "用 Grokko 拆解这篇".
-3. The agent outputs a self-contained `.html` you can double-click open. No backend, no build step.
-
-**Prerequisites**
-
-- An agent host with read/write file tools.
-- `node` available if you want the self-check step (`node --check` on the embedded script).
+**保真 > 结构清楚 > 理解友好 > 趣味包装**
 
 ---
 
-## Customization
+## 核心特点
 
-- **Footer signature.** By default the page shows only a small project credit (`由 Grokko 生成 · github.com/<your-username>/grokko`) and no personal name. To add your own name/link, tell the agent — it will append an optional personal signature line. Nothing personal is injected by default.
-- **Language.** Defaults to Chinese; override by asking for a specific language.
+- **保真优先**：每个核心判断都要求标注原文依据，避免把模型自己的解释伪装成作者原话。
+- **信息类型标注**：区分事实、判断、推论和例子，帮助读者建立更稳的阅读习惯。
+- **不强行套因果链**：先判断原文结构，再选择论证图、主题簇、机制流程、时间线或问题树。
+- **零基础背景包**：正式拆原文前，只补读懂本文必须知道的 3 到 5 个背景概念。
+- **苏格拉底式问题**：用问题带读者发现结构，而不是直接灌结论。
+- **闭环互动题**：只使用单选、多选、判断、匹配、排序等可检查题型。
+- **错题回流**：答错后会提示错在事实、判断、推论还是概念关系，并指向复习模块。
+- **稳定互动引擎**：题目使用固定 `data-*` 契约和事件委托脚本，减少“点击没反应”的问题。
+- **固定单列布局**：左侧固定导航与进度，右侧主内容严格单列，适合长文学习。
 
 ---
 
-## Known limitations
+## 每个页面包含的 11 个模块
 
-- Best for material that has a real argument or structure. Not meant for breaking-news blurbs, API parameter references, or pure step-by-step how-tos.
-- It is a **preview / comprehension aid**, not a replacement for fully studying the source.
-- Generated pages may quote source text; if you publish example outputs, mind the copyright of the original material.
+1. 学习目标与阅读路径
+2. 零基础背景包
+3. 原文问题定位
+4. 原文结构地图
+5. 核心判断与依据
+6. 关键概念拆解
+7. 苏格拉底式阅读关卡
+8. 闯关式任务包装
+9. 误解与边界
+10. 背景知识缺口
+11. 复盘与学习报告
 
 ---
 
-## License
+## 安装与使用
 
-MIT — see [LICENSE](./LICENSE). Use it, fork it, ship it.
+把整个 `grokko/` 文件夹放到你的 agent skills 目录中，确保里面包含 `SKILL.md`。
+
+使用时，把原文、文件路径或 URL 发给支持 skill 的 agent，然后提出类似请求：
+
+```text
+用 Grokko 拆解这篇文章，生成一个理解地图。
+```
+
+或：
+
+```text
+把下面这篇英文长文生成中文 Grokko 理解地图。
+```
+
+Grokko 会输出一个自包含的 `.html` 文件，可以直接双击打开，不需要后端或构建步骤。
+
+---
+
+## 前置条件
+
+- 一个支持本地文件读写的 agent 环境
+- 如需做脚本自检，建议本机有 `node`，用于运行 `node --check`
+
+---
+
+## 输出语言规则
+
+默认规则：
+
+- 默认生成中文理解地图
+- 原文依据可以保留原文
+- 技术术语不生硬直译
+- 没有通用译法的术语保留原词，并用中文解释
+
+如果用户明确要求英文、双语或其他语言，则以用户要求为准。
+
+---
+
+## 适合的材料
+
+适合：
+
+- 技术长文
+- 跨领域访谈
+- 投资、商业、AI、设计、社会科学类深度文稿
+- 论文或研究型文章
+- 用户想真正理解，而不是只要摘要的材料
+
+不适合：
+
+- 纯新闻快讯
+- API 参数手册
+- 只需要行动步骤的教程
+- 原文本身没有观点或结构的碎片材料
+
+---
+
+## 可定制项
+
+- **页脚署名**：默认只显示项目署名，不加入个人名字。
+- **个人署名**：只有用户明确要求时，才会在页脚加入个人名字或链接。
+- **输出语言**：默认中文，可由用户显式改为英文或其他语言。
+- **保存位置**：默认保存到当前工作目录；用户要求时可保存到下载目录。
+
+---
+
+## 已知限制
+
+- Grokko 是理解辅助工具，不替代完整学习。
+- 它适合有真实结构或论证的材料，不适合拆解零散信息。
+- 生成页面可能引用原文；公开分享示例输出时，需要注意原文版权。
+
+---
+
+## 许可证
+
+MIT，见 [LICENSE](./LICENSE)。
