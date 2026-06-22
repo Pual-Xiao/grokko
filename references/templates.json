@@ -1,0 +1,22 @@
+{
+  "goal_item": "<div class=\"goal-item\"><span class=\"goal-num\">{num}</span><span>{text}</span></div>",
+  "bg_supplement": "<div class=\"bg-supplement\">\n  <h4>{term}</h4>\n  <p>{explanation}</p>\n  <div class=\"why\">为什么读本文需要：{why}</div>\n  <p style=\"font-size:0.8rem;color:#999;margin-top:4px\">背景补充，不是原文主张。</p>\n</div>",
+  "src_block": "<div class=\"src-block\">\n  <div class=\"src-label\">原文依据</div>\n  <div class=\"src-text\">{text}</div>\n  <div class=\"src-en\">{en}</div>\n</div>",
+  "tag": "<span class=\"tag tag-{type}\">{label}</span>",
+  "card": "<div class=\"card\">\n  <h3>{title}</h3>\n  {body}\n</div>",
+  "concept_card": "<div class=\"concept-card\">\n  <h4>{term}</h4>\n  <p>{definition}</p>\n  <p style=\"font-size:0.82rem;color:#555;margin-top:4px\">别误解成什么：{antiMisunderstanding}</p>\n  <div class=\"rel\"><strong>概念关系</strong>：\n    {relations}\n  </div>\n</div>",
+  "rel_tag": "<span class=\"rel-tag\">{text}</span>",
+  "struct_node": "<div class=\"struct-node {nodeClass}\">\n  <h4>{title}</h4>\n  <div class=\"loc\">{loc}</div>\n  <p style=\"font-size:0.85rem;margin-top:4px\">{description}</p>\n</div>",
+  "misunderstand": "<div class=\"misunderstand\">\n  <h4>{title}</h4>\n  <p class=\"line\"><strong>为什么容易误解</strong>：{whyEasy}</p>\n  <p class=\"line\"><strong>原文真正说了什么</strong>：{actual}</p>\n  <p class=\"line\"><strong>原文没有说什么</strong>：{notSaying}</p>\n  <p class=\"line\"><strong>如何避免</strong>：{prevention}</p>\n</div>",
+  "gap_card": "<div class=\"gap-card\">\n  <h4>{title}</h4>\n  <p>{description}</p>\n  <p style=\"font-size:0.82rem;color:var(--brick);margin-top:4px\">{necessity}</p>\n</div>",
+  "task_single": "<div class=\"task\" data-task=\"{id}\" data-answer=\"{answer}\"\n     data-ok=\"{ok}\" data-no=\"{no}\"\n     data-src=\"{src}\" data-review=\"{review}\">\n  <div class=\"q\">{question}</div>\n  <div class=\"opts\">\n{options}\n  </div>\n  <button class=\"check\">检查</button>\n  <div class=\"feedback\" aria-live=\"polite\">选择后点击检查，这里会显示反馈。</div>\n</div>",
+  "task_multi": "<div class=\"task\" data-task=\"{id}\" data-multi=\"true\" data-answer=\"{answer}\"\n     data-ok=\"{ok}\" data-no=\"{no}\"\n     data-src=\"{src}\" data-review=\"{review}\">\n  <div class=\"q\">{question}</div>\n  <div class=\"opts\">\n{options}\n  </div>\n  <button class=\"check\">检查</button>\n  <div class=\"feedback\" aria-live=\"polite\">选择后点击检查，这里会显示反馈。</div>\n</div>",
+  "task_match": "<div class=\"task\" data-task=\"{id}\" data-type=\"selects\"\n     data-ok=\"{ok}\" data-no=\"{no}\"\n     data-src=\"{src}\" data-review=\"{review}\">\n  <div class=\"q\">{question}</div>\n{rows}\n  <button class=\"check\">检查</button>\n  <div class=\"feedback\" aria-live=\"polite\">选择后点击检查，这里会显示反馈。</div>\n</div>",
+  "opt_btn": "<button class=\"opt\" data-val=\"{val}\">{val}. {text}</button>",
+  "match_row": "<div class=\"match-row\"><span class=\"match-label\">{label}</span><select class=\"match\" data-correct=\"{correct}\"><option value=\"\">--选择--</option>{options}</select></div>",
+  "match_opt": "<option value=\"{val}\">{text}</option>",
+  "wrong_box": "<div class=\"wrong-box\">\n  <h4>📋 错题收集区</h4>\n  <ul id=\"wrongBox\"><li style=\"color:#888\">还没有错题。答错的题会自动收集到这里。</li></ul>\n</div>",
+  "report_section": "<div class=\"btn-row\">\n  <button class=\"btn\" id=\"genReport\">生成学习报告</button>\n  <button class=\"btn btn-outline\" id=\"copyReport\">复制到剪贴板</button>\n</div>\n<div class=\"report-area\">\n  <h4>📝 学习报告</h4>\n  <pre id=\"report\">点击「生成学习报告」查看你的答题记录和复习建议。</pre>\n</div>",
+  "module_section": "<section id=\"{sid}\">\n  <h2><span class=\"num\">{num}</span>{title}</h2>\n  <div class=\"module-desc\">{desc}</div>\n  {body}\n</section>",
+  "tip": "<div class=\"tip\">{text}</div>"
+}
